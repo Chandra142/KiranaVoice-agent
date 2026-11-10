@@ -1,0 +1,75 @@
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+.pnpm-store/
+
+# Environment Variables & Secrets (Never commit API keys)
+.env
+.env.*
+!.env.example
+client/.env
+client/.env.*
+!client/.env.example
+server/.env
+server/.env.*
+!server/.env.example
+*.pem
+*.key
+
+# Production & Build outputs
+dist/
+client/dist/
+build/
+.vite/
+client/.vite/
+client/node_modules/.vite/
+
+# Logs & Debugging
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+*.log
+
+# Temporary files & Audio Caches
+temp/
+tmp/
+uploads/
+*.wav
+*.webm
+*.ogg
+*.tmp
+
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+[Dd]esktop.ini
+
+# IDE & Editor Configurations
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.sublime-*
+
+# Local scratch and preview artifacts (keep main demo assets)
+preview-*.png
+test-*.png
+test-*.mp4
+test-*.gif
+test.svg
+test.png
+cursor.bmp
+scratch/

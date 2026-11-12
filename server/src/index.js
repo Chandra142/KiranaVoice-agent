@@ -15,10 +15,26 @@ const upload = multer({
   limits: { fileSize: 12 * 1024 * 1024 }
 });
 
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || "http://localhost:5173" }));
+const allowedOrigins = (process.env.CLIENT_ORIGIN || "http://localhost:5173")
+  .split(",")
+  .map(origin => origin.trim().replace(/\/+$/, ""))
+  .filter(Boolean);
+
+app.use(cors({
+  origin(origin, callback) {
+    if (!origin || allowedOrigins.includes("*") || allowedOrigins.includes(origin.replace(/\/+$/, ""))) {
+      return callback(null, true);
+    }
+    return callback(new Error("Not allowed by CORS"));
+  }
+}));
 app.use(express.json({ limit: "1mb" }));
 
-app.get("/api/health", (_req, res) => res.json({ ok: true, service: "VoiceKirana API" }));
+app.get("/api/health", (_req, res) => res.json({
+  ok: true,
+  service: "VoiceKirana API",
+  dbConnected: mongoose.connection.readyState === 1
+}));
 app.get("/api/products", (_req, res) => res.json(products));
 
 app.post("/api/voice/transcribe", upload.single("audio"), async (req, res) => {

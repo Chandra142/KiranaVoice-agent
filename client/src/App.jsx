@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Mic, Square, ShoppingBasket, Package, IndianRupee, RefreshCw, CheckCircle2, Volume2, Phone, Leaf, Clock3 } from "lucide-react";
 
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API = (import.meta.env.VITE_API_URL || "http://localhost:5000").replace(/\/+$/, "");
 
 export default function App() {
   const [recording, setRecording] = useState(false);
